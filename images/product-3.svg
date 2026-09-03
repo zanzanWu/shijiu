@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs><linearGradient id="p3bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#EDE0D4"/><stop offset="100%" style="stop-color:#D4B896"/></linearGradient></defs>
+  <rect width="400" height="400" fill="url(#p3bg)"/>
+  <circle cx="310" cy="310" r="65" fill="#8B5E3C" opacity="0.1"/>
+  <g transform="translate(200, 200)">
+    <ellipse cx="0" cy="100" rx="100" ry="14" fill="#000" opacity="0.06"/>
+    <rect x="-70" y="-50" width="140" height="140" rx="10" fill="#8B5E3C"/>
+    <rect x="-70" y="-50" width="140" height="140" rx="10" fill="#FFFFFF" opacity="0.06"/>
+    <rect x="-64" y="-44" width="128" height="128" rx="7" fill="none" stroke="#6B4423" stroke-width="1" opacity="0.4"/>
+    <line x1="-70" y1="0" x2="70" y2="0" stroke="#6B4423" stroke-width="1.5" opacity="0.4"/>
+    <g stroke="#6B4423" stroke-width="0.8" opacity="0.2">
+      <line x1="-60" y1="-30" x2="60" y2="-30"/><line x1="-60" y1="-15" x2="60" y2="-15"/>
+      <line x1="-60" y1="15" x2="60" y2="15"/><line x1="-60" y1="30" x2="60" y2="30"/><line x1="-60" y1="45" x2="60" y2="45"/>
+      <line x1="-60" y1="60" x2="60" y2="60"/><line x1="-60" y1="75" x2="60" y2="75"/>
+    </g>
+    <circle cx="0" cy="20" r="16" fill="#C9A96E"/>
+    <circle cx="0" cy="20" r="11" fill="#8B5E3C"/>
+    <circle cx="0" cy="20" r="5" fill="#C9A96E"/>
+    <path d="M-55 -65 Q-40 -78 -25 -70 Q-10 -78 5 -70 Q20 -78 35 -70 Q50 -78 55 -65 L55 -50 L-55 -50Z" fill="#A67C52"/>
+    <line x1="-35" y1="-60" x2="-35" y2="-48" stroke="#6B4423" stroke-width="2"/>
+    <line x1="35" y1="-60" x2="35" y2="-48" stroke="#6B4423" stroke-width="2"/>
+    <rect x="-8" y="-58" width="16" height="4" rx="2" fill="#C9A96E"/>
+  </g>
+</svg>

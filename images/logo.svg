@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2D6A5E"/>
+      <stop offset="100%" style="stop-color:#5A9A8C"/>
+    </linearGradient>
+    <linearGradient id="scaleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E8A87C"/>
+      <stop offset="100%" style="stop-color:#C9A96E"/>
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="60" cy="60" r="56" fill="url(#logoGrad)"/>
+  <!-- Island shape -->
+  <path d="M30 72 Q35 58 48 55 Q55 42 68 48 Q82 44 88 58 Q92 70 82 76 Q70 82 56 80 Q40 80 30 72 Z" fill="#FAF7F2" opacity="0.95"/>
+  <!-- Fish scales pattern -->
+  <g transform="translate(60, 62)">
+    <path d="M-12 -6 Q-6 -12 0 -6 Q6 -12 12 -6" fill="none" stroke="url(#scaleGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-12 2 Q-6 -4 0 2 Q6 -4 12 2" fill="none" stroke="url(#scaleGrad)" stroke-width="2" stroke-linecap="round"/>
+    <path d="M-8 10 Q-4 6 0 10 Q4 6 8 10" fill="none" stroke="url(#scaleGrad)" stroke-width="2" stroke-linecap="round"/>
+  </g>
+  <!-- Sparkle -->
+  <g transform="translate(82, 32)">
+    <path d="M0 -6 L1.5 -1.5 L6 0 L1.5 1.5 L0 6 L-1.5 1.5 L-6 0 L-1.5 -1.5 Z" fill="#E8A87C"/>
+  </g>
+  <g transform="translate(38, 38)">
+    <path d="M0 -4 L1 -1 L4 0 L1 1 L0 4 L-1 1 L-4 0 L-1 -1 Z" fill="#C9A96E"/>
+  </g>
+</svg>

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs><linearGradient id="p9bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#FDE8E3"/><stop offset="100%" style="stop-color:#F8E0D0"/></linearGradient></defs>
+  <rect width="400" height="400" fill="url(#p9bg)"/>
+  <circle cx="300" cy="100" r="55" fill="#E07A5F" opacity="0.1"/>
+  <g transform="translate(200, 210)">
+    <ellipse cx="0" cy="95" rx="95" ry="14" fill="#000" opacity="0.05"/>
+    <rect x="-55" y="-60" width="110" height="145" rx="12" fill="#FAF7F2"/>
+    <rect x="-55" y="-60" width="110" height="145" rx="12" fill="url(#p9glow)" opacity="0.3"/>
+    <defs><linearGradient id="p9glow" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.5"/><stop offset="100%" style="stop-color:#FFFFFF;stop-opacity:0"/></linearGradient></defs>
+    <rect x="-48" y="-53" width="96" height="131" rx="8" fill="#F5E6D3"/>
+    <ellipse cx="0" cy="-60" rx="55" ry="12" fill="#E8D5BC"/>
+    <ellipse cx="0" cy="-63" rx="48" ry="9" fill="#D4C4A8"/>
+    <g transform="translate(0, 0)">
+      <ellipse cx="0" cy="10" rx="30" ry="35" fill="#E8A87C" opacity="0.4"/>
+      <ellipse cx="-8" cy="0" rx="18" ry="25" fill="#F5D5BC" opacity="0.5"/>
+      <ellipse cx="10" cy="15" rx="12" ry="18" fill="#E07A5F" opacity="0.25"/>
+    </g>
+    <g opacity="0.5" stroke="#D48B5C" stroke-width="1.5" fill="none" stroke-linecap="round">
+      <path d="M-20 -30 Q-25 -10 -18 10"><animate attributeName="opacity" values="0.5;0.2;0.5" dur="3s" repeatCount="indefinite"/></path>
+      <path d="M15 -35 Q20 -15 12 5"><animate attributeName="opacity" values="0.3;0.6;0.3" dur="2.5s" repeatCount="indefinite"/></path>
+      <path d="M0 -40 Q-2 -20 2 0"><animate attributeName="opacity" values="0.6;0.3;0.6" dur="2s" repeatCount="indefinite"/></path>
+    </g>
+    <rect x="-35" y="50" width="70" height="22" rx="4" fill="#E8A87C" opacity="0.25"/>
+    <text x="0" y="65" text-anchor="middle" font-family="serif" font-size="10" fill="#8B5E3C" letter-spacing="3">HANDMADE</text>
+  </g>
+  <g transform="translate(90, 110) rotate(-20)">
+    <path d="M0 0 Q10 -25 0 -40 Q-10 -25 0 0Z" fill="#7AB5A6" opacity="0.6"/>
+  </g>
+</svg>

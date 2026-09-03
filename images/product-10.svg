@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400">
+  <defs><linearGradient id="p10bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8F2EF"/><stop offset="100%" style="stop-color:#C5D8CF"/></linearGradient></defs>
+  <rect width="400" height="400" fill="url(#p10bg)"/>
+  <circle cx="310" cy="310" r="60" fill="#2D6A5E" opacity="0.08"/>
+  <g transform="translate(200, 210)">
+    <ellipse cx="0" cy="105" rx="105" ry="14" fill="#000" opacity="0.05"/>
+    <path d="M-70 -50 Q-80 60 -55 95 L55 95 Q80 60 70 -50 Q35 -70 0 -65 Q-35 -70 -70 -50Z" fill="#E8D5BC"/>
+    <path d="M-70 -50 Q-80 60 -55 95 L55 95 Q80 60 70 -50 Q35 -70 0 -65 Q-35 -70 -70 -50Z" fill="#FFFFFF" opacity="0.12"/>
+    <ellipse cx="0" cy="-50" rx="70" ry="16" fill="#D4C4A8"/>
+    <ellipse cx="0" cy="-53" rx="62" ry="12" fill="#B8A888"/>
+    <g stroke="#A68B6B" stroke-width="1.5" opacity="0.3" fill="none">
+      <path d="M-55 -20 Q0 -30 55 -20"/><path d="M-57 10 Q0 0 57 10"/>
+      <path d="M-52 40 Q0 30 52 40"/><path d="M-42 65 Q0 55 42 65"/>
+    </g>
+    <path d="M-55 -55 Q-50 -75 -35 -68" fill="none" stroke="#E8D5BC" stroke-width="8" stroke-linecap="round"/>
+    <path d="M55 -55 Q50 -75 35 -68" fill="none" stroke="#E8D5BC" stroke-width="8" stroke-linecap="round"/>
+    <g transform="translate(-20, 10)">
+      <circle cx="0" cy="0" r="12" fill="#7AB5A6" opacity="0.6"/>
+    </g>
+    <g transform="translate(25, 25)">
+      <circle cx="0" cy="0" r="10" fill="#E8A87C" opacity="0.6"/>
+    </g>
+  </g>
+  <g transform="translate(85, 100) rotate(-15)">
+    <rect x="-15" y="-8" width="30" height="16" rx="3" fill="#FAF7F2" stroke="#D4C4A8"/>
+    <text x="0" y="5" text-anchor="middle" font-size="9" fill="#8B7355">鳞光</text>
+  </g>
+</svg>

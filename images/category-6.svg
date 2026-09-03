@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400" preserveAspectRatio="xMidYMid slice">
+  <defs><linearGradient id="cat6bg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#F3EEE6"/><stop offset="100%" style="stop-color:#E0D5C5"/></linearGradient></defs>
+  <rect width="300" height="400" fill="url(#cat6bg)"/>
+  <circle cx="60" cy="80" r="50" fill="#C9A96E" opacity="0.12"/>
+  <g transform="translate(150, 210)">
+    <ellipse cx="0" cy="95" rx="95" ry="14" fill="#FAF7F2" opacity="0.7"/>
+    <rect x="-50" y="-50" width="100" height="135" rx="6" fill="#FAF7F2" stroke="#D4C4A8" stroke-width="1.5"/>
+    <rect x="-45" y="-45" width="90" height="125" rx="4" fill="#F5EFE6"/>
+    <rect x="-40" y="-35" width="80" height="3" fill="#E8A87C" opacity="0.6"/>
+    <rect x="-40" y="-25" width="60" height="2" fill="#C9A96E" opacity="0.4"/>
+    <rect x="-40" y="-18" width="70" height="2" fill="#C9A96E" opacity="0.3"/>
+    <g transform="translate(0, 15)">
+      <rect x="-30" y="-15" width="60" height="50" rx="4" fill="#FFFFFF" stroke="#E0D5C5" stroke-width="1"/>
+      <line x1="-22" y1="-5" x2="22" y2="-5" stroke="#E8A87C" stroke-width="1.5" opacity="0.5"/>
+      <line x1="-22" y1="5" x2="15" y2="5" stroke="#C9A96E" stroke-width="1" opacity="0.4"/>
+      <line x1="-22" y1="13" x2="20" y2="13" stroke="#C9A96E" stroke-width="1" opacity="0.3"/>
+      <circle cx="18" cy="-8" r="6" fill="#E8A87C" opacity="0.3"/>
+    </g>
+    <g transform="translate(-25, 60)">
+      <rect x="0" y="0" width="12" height="18" rx="2" fill="#2D6A5E"/>
+      <rect x="2" y="2" width="8" height="3" fill="#7AB5A6"/>
+    </g>
+    <g transform="translate(10, 62)">
+      <rect x="0" y="0" width="10" height="16" rx="2" fill="#E8A87C"/>
+      <rect x="2" y="2" width="6" height="2" fill="#F5D5BC"/>
+    </g>
+    <path d="M-30 -65 Q-20 -75 -10 -68 Q0 -75 10 -68 Q20 -75 30 -65 L30 -50 L-30 -50Z" fill="#D4C4A8"/>
+    <path d="M-25 -60 L-25 -50" stroke="#A68B4B" stroke-width="1.5"/>
+    <path d="M25 -60 L25 -50" stroke="#A68B4B" stroke-width="1.5"/>
+  </g>
+  <text x="150" y="370" text-anchor="middle" font-family="serif" font-size="16" fill="#8B7355" opacity="0.6">手账文具</text>
+</svg>
