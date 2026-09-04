@@ -27,13 +27,12 @@
     <div class="container">
       <div class="header-inner">
         <a href="index.html" class="logo">
-          <img src="images/logo.svg" alt="鳞光屿" style="width:36px;height:36px;">
-          <div>鳞光屿<span class="logo-sub">LINGUANG ISLAND</span></div>
+          <img src="images/logo.svg" alt="LinGlow" style="width:36px;height:36px;">
+          <div>LinGlow<span class="logo-sub">LINGUANG ISLAND</span></div>
         </a>
         <nav class="main-nav">
-          <div class="nav-item"><a href="index.html" class="nav-link">首页</a></div>
           <div class="nav-item">
-            <a href="products.html" class="nav-link active">discover<span class="arrow">▼</span></a>
+            <a href="products.html" class="nav-link active">products<span class="arrow">▼</span></a>
             <div class="dropdown">
               <div class="dropdown-grid">
                 <a href="products.html?cat=jewelry" class="dropdown-item"><div class="dropdown-item-icon">💍</div><div class="dropdown-item-title">手工饰品</div><div class="dropdown-item-desc">耳环/项链/手链</div></a>
@@ -49,9 +48,9 @@
               </div>
             </div>
           </div>
-          <div class="nav-item"><a href="products.html?sort=new" class="nav-link">New Arrivals</a></div>
-          <div class="nav-item"><a href="custom.html" class="nav-link">Customizable</a></div>
-          <div class="nav-item"><a href="event.html" class="nav-link">Limited‑Time Event</a></div>
+          <div class="nav-item"><a href="products.html?sort=new" class="nav-link">news!</a></div>
+          <div class="nav-item"><a href="custom.html" class="nav-link">customizable</a></div>
+          <div class="nav-item"><a href="event.html" class="nav-link">event</a></div>
         </nav>
         <div class="header-actions">
           <div class="search-bar">
@@ -61,8 +60,10 @@
           <button class="action-btn" aria-label="站内搜索" data-search-open><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></button>
           <button class="action-btn" aria-label="我的账户"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></button>
           <button class="action-btn" aria-label="收藏"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
-          <a href="products.html" class="header-discover-btn">发现</a>
+          <a href="products.html" class="nav-discover-btn" style="display:inline-flex;align-items:center;font-size:15px;">发现</a>
           <button class="action-btn mobile-menu-btn" aria-label="菜单"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg></button>
+          <a href="products.html" class="mobile-header-link">products</a>
+          <a href="event.html" class="mobile-header-link">活动</a>
         </div>
       </div>
     </div>
@@ -72,15 +73,14 @@
   <div class="mobile-menu-overlay"></div>
   <div class="mobile-menu">
     <div class="mobile-menu-header">
-      <span class="logo" style="font-size:20px;">鳞光屿</span>
+      <span class="logo" style="font-size:20px;">LinGlow</span>
       <button class="mobile-menu-close" aria-label="关闭"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
     </div>
     <nav class="mobile-nav-list">
-      <a href="index.html" class="mobile-nav-link">首页</a>
-      <a href="products.html" class="mobile-nav-link active">discover</a>
-      <a href="products.html?sort=new" class="mobile-nav-link">New Arrivals</a>
-      <a href="custom.html" class="mobile-nav-link">Customizable</a>
-      <a href="event.html" class="mobile-nav-link">Limited‑Time Event</a>
+      <a href="products.html" class="mobile-nav-link active">products</a>
+      <a href="products.html?sort=new" class="mobile-nav-link">news!</a>
+      <a href="custom.html" class="mobile-nav-link">customizable</a>
+      <a href="event.html" class="mobile-nav-link">event</a>
     </nav>
   </div>
 
@@ -119,14 +119,6 @@
           </div>
         </div>
 
-        <div class="filter-section">
-          <div class="filter-title">价格区间</div>
-          <div class="price-range">
-            <input type="number" class="price-input" placeholder="最低" value="0">
-            <span style="color:var(--text-light);">-</span>
-            <input type="number" class="price-input" placeholder="最高" value="500">
-          </div>
-        </div>
 
         <div class="filter-section">
           <div class="filter-title">颜色</div>
@@ -168,6 +160,8 @@
 
       <!-- Products Main -->
       <div class="products-main">
+          <!-- Mobile Filter Bar (mobile only) -->
+          <div class="mobile-filter-bar"></div>
         <!-- Toolbar -->
         <div class="products-toolbar">
           <div class="products-count" data-results-info>共找到 <strong>12</strong> 件手作商品</div>
@@ -217,8 +211,8 @@
       <div class="footer-top">
         <div class="footer-brand">
           <div class="logo" style="color:#fff;margin-bottom:20px;">
-            <img src="images/logo.svg" alt="鳞光屿" style="width:36px;height:36px;">
-            <div>鳞光屿<span class="logo-sub" style="color:rgba(255,255,255,0.5);">LINGUANG ISLAND</span></div>
+            <img src="images/logo.svg" alt="LinGlow" style="width:36px;height:36px;">
+            <div>LinGlow<span class="logo-sub" style="color:rgba(255,255,255,0.5);">LINGUANG ISLAND</span></div>
           </div>
           <p class="footer-brand-desc">鳞光屿是一个专注手工小物的原创品牌，汇聚独立手作人的匠心之作。每一件都独一无二，为你的生活增添手作的温度与光芒。</p>
           <div class="footer-social">
@@ -257,5 +251,6 @@
   <button class="back-to-top" aria-label="返回顶部"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/mobile-products.js"></script>
 </body>
 </html>
