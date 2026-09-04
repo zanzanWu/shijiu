@@ -875,7 +875,7 @@
     }
     const titleEl = document.querySelector('[data-detail-title]');
     if (titleEl) titleEl.textContent = product.title;
-    document.title = product.title + ' - 鳞光屿';
+    document.title = 'detail';
 
     // 价格
     const priceWrap = document.querySelector('[data-detail-price]');

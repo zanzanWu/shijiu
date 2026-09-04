@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Linguang Island</title>
-  <meta name="description" content="鳞光屿手作定制服务，支持手工饰品、编织手作、陶艺器皿、皮具手作、香薰蜡烛、手账文具六大品类，按你的喜好选择图案、物料与配件，打造独一无二的定制手作。">
+  <title>custom</title>
+  <meta name="description" content="鳞光屿手作定制服务，支持别针、封面、贴纸、卡牌四类定制，从探索图库精选图案，按你的喜好搭配物料与配件，打造独一无二的定制手作。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
@@ -108,7 +108,7 @@
         <div class="custom-step">
           <div class="custom-step-num">1</div>
           <div class="custom-step-title">选择品类</div>
-          <div class="custom-step-desc">从饰品、编织、陶艺、皮具、香薰或文具中挑选你的定制品类</div>
+          <div class="custom-step-desc">从别针、封面、贴纸或卡牌中挑选你的定制品类</div>
         </div>
         <div class="custom-step">
           <div class="custom-step-num">2</div>
@@ -148,9 +148,13 @@
             <div class="custom-summary-row"><span class="custom-summary-label">图案</span><span class="custom-summary-value empty" data-sum="pattern">未选择</span></div>
             <div class="custom-summary-row"><span class="custom-summary-label">物料</span><span class="custom-summary-value empty" data-sum="material">未选择</span></div>
             <div class="custom-summary-row"><span class="custom-summary-label">配件</span><span class="custom-summary-value empty" data-sum="accessory">未选择</span></div>
-            <div class="custom-order-price">
-              <span class="custom-order-price-label">定制起价</span>
-              <span class="custom-order-price-value" data-sum="price">¥0</span>
+            <div class="custom-summary-row">
+              <span class="custom-summary-label">定制数量</span>
+              <div class="custom-summary-value" style="display:flex;align-items:center;gap:6px;">
+                <button type="button" data-qty-minus aria-label="减少数量" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:16px;line-height:1;color:var(--text-dark);flex-shrink:0;">−</button>
+                <input type="number" name="quantity" value="1" min="1" max="99" data-qty-input style="width:56px;height:28px;text-align:center;border:1px solid var(--border);border-radius:6px;font-size:14px;color:var(--text-dark);">
+                <button type="button" data-qty-plus aria-label="增加数量" style="width:28px;height:28px;border:1px solid var(--border);border-radius:6px;background:#fff;cursor:pointer;font-size:16px;line-height:1;color:var(--text-dark);flex-shrink:0;">＋</button>
+              </div>
             </div>
             <div class="custom-order-note">最终价格以手作人确认图纸与物料后为准，定制周期 7–15 天，满199元免运费。</div>
             <!-- 隐藏字段：提交时由 JS 写入当前选择 -->
@@ -160,7 +164,6 @@
             <input type="hidden" name="pattern" data-custom-field="pattern">
             <input type="hidden" name="material" data-custom-field="material">
             <input type="hidden" name="accessories" data-custom-field="accessories">
-            <input type="hidden" name="price" data-custom-field="price">
             <button type="submit" class="btn btn-primary btn-lg custom-submit" data-custom-submit>提交定制需求</button>
           </form>
         </div>
@@ -234,102 +237,63 @@
        鳞光屿 手作定制页 - 数据与交互
        ============================================ */
     (function () {
-      var CUSTOM_DATA = [
+                  var CUSTOM_DATA = [
         {
-          id: 'jewelry',
-          name: '手工饰品',
-          icon: '💍',
-          desc: '耳环 · 项链 · 手链 · 吊坠',
+          id: 'pin',
+          name: '别针',
+          icon: '📌',
+          desc: '徽章 · 胸针 · 装饰别针',
+          leadTime: '定制周期约 5-7 天',
+          basePrice: 39,
+          patterns: [
+            { name: '黑白猫', img: 'explore/ur,pin_large_front,square,600x600.jpg' },
+            { name: '橘白猫', img: 'explore/ur,pin_large_front,square,600x600 (1).jpg' },
+            { name: '小黄龙', img: 'explore/ur,pin_large_front,square,600x600 (2).jpg' }
+          ],
+          materials: ['黄铜镀金', '合金', '珐琅', '不锈钢'],
+          accessories: ['安全别针', '磁吸扣', '礼盒包装', '姓名刻字']
+        },
+        {
+          id: 'cover',
+          name: '封面',
+          icon: '📕',
+          desc: '笔记本封面 · 手账封面 · 书衣',
           leadTime: '定制周期约 7 天',
-          basePrice: 128,
+          basePrice: 59,
           patterns: [
-            { name: '星月', img: 'works/2268b798a21c0e05ef286d9afd40e5c9.jpg' },
-            { name: '叶片', img: 'works/a71a90dca36579b41915bfc6e600b539.jpg' },
-            { name: '浪花', img: 'works/bb00b02b5263fa20c3def9e0ed3501d4.jpg' },
-            { name: '珠语', img: 'works/ee13552d8581cd8f6e0346bad0646920.jpg' }
+            { name: '彩虹幽灵', img: 'explore/sh,small,507x507-pad,600x600,f8f8f8.u2.jpg' },
+            { name: '樱花', img: 'explore/st,small,507x507-pad,600x600,f8f8f8.u4.jpg' }
           ],
-          materials: ['925纯银', 'H65黄铜', '镀金', '天然锆石'],
-          accessories: ['防过敏耳针', '耳钩', '延长链', 'S扣', '刻字服务']
+          materials: ['进口布面', 'PU皮革', '道林纸', '牛皮纸'],
+          accessories: ['烫金姓名', '绑带', '内页替换', '书签带']
         },
         {
-          id: 'knit',
-          name: '编织手作',
-          icon: '🧶',
-          desc: '围巾 · 帽子 · 玩偶 · 收纳篮',
-          leadTime: '定制周期约 10 天',
-          basePrice: 89,
+          id: 'sticker',
+          name: '贴纸',
+          icon: '🏷️',
+          desc: '手账贴纸 · 装饰贴纸 · 礼盒贴纸',
+          leadTime: '现货 / 定制约 3-5 天',
+          basePrice: 19,
           patterns: [
-            { name: '鱼鳞纹', img: 'works/01.jpg' },
-            { name: '藤编格', img: 'works/3741f565dfd39f4d616d1eac8edfc7b6.jpg' },
-            { name: '麻花辫', img: 'works/619c97d61443beddd12c92ac28e90652.jpg' },
-            { name: '格纹', img: 'works/842b7d997cb33d133d117e4fcee05f9e.jpg' }
+            { name: '彩虹幽灵', img: 'explore/sh,small,507x507-pad,600x600,f8f8f8.u2.jpg' },
+            { name: '樱花', img: 'explore/st,small,507x507-pad,600x600,f8f8f8.u4.jpg' }
           ],
-          materials: ['美利奴羊毛', '羊绒混纺', '天然藤条', '棉麻绳'],
-          accessories: ['流苏', '木扣', '毛球', '刺绣姓名', '皮革标签']
+          materials: ['和纸', '铜版纸', '透明PVC', '珠光纸'],
+          accessories: ['整版切割', '异形模切', '防水覆膜', '独立包装']
         },
         {
-          id: 'ceramic',
-          name: '陶艺器皿',
-          icon: '🏺',
-          desc: '马克杯 · 花瓶 · 餐具 · 碗',
-          leadTime: '定制周期约 10-15 天',
-          basePrice: 118,
-          patterns: [
-            { name: '粗陶本色', img: 'works/054cdf0217a93ebdaa423b9df954e02b.jpg' },
-            { name: '米白釉', img: 'works/7c3fb1a2e72453e287ca65e6157a7eb2.jpg' },
-            { name: '星辰点彩', img: 'works/cf58732337ca917d606f964128ad6c54.jpg' },
-            { name: '波纹刻花', img: 'works/23e4ec383b1816b4c98a01805032002c.jpg' }
-          ],
-          materials: ['高白粗陶', '细陶', '天然矿物釉', '米白釉'],
-          accessories: ['木盖', '竹托盘', '麻绳提手', '同款杯垫', '刻字落款']
-        },
-        {
-          id: 'leather',
-          name: '皮具手作',
-          icon: '👜',
-          desc: '钱包 · 卡包 · 皮带 · 钥匙包',
-          leadTime: '定制周期约 7-10 天',
-          basePrice: 199,
-          patterns: [
-            { name: '植鞣原色', img: 'works/069d8d57722f1eefb7612235d0c92d77.jpg' },
-            { name: '压花格纹', img: 'works/e13f04f0b526c0bc4e1df464b4d01ed4.jpg' },
-            { name: '编织皮条', img: 'works/3741f565dfd39f4d616d1eac8edfc7b6.jpg' },
-            { name: '浮雕字母', img: 'works/842b7d997cb33d133d117e4fcee05f9e.jpg' }
-          ],
-          materials: ['意大利植鞣牛皮', '头层牛皮', '马鞍革', '油蜡皮'],
-          accessories: ['黄铜五金', '白铜按扣', '钥匙扣', '姓名刻字', '蜡线配色']
-        },
-        {
-          id: 'candle',
-          name: '香薰蜡烛',
-          icon: '🕯️',
-          desc: '蜡烛 · 香皂 · 线香',
-          leadTime: '现货 / 定制约 7 天',
-          basePrice: 68,
-          patterns: [
-            { name: '干花浮雕', img: 'works/1fd205de11f5d47ad83b0c7072961576.jpg' },
-            { name: '素色原味', img: 'works/48fcea0ed9cd00772e2aa7fb1bb7dbb3.jpg' },
-            { name: '渐变分层', img: 'works/619c97d61443beddd12c92ac28e90652.jpg' },
-            { name: '手绘纹样', img: 'works/ee13552d8581cd8f6e0346bad0646920.jpg' }
-          ],
-          materials: ['天然大豆蜡', '蜂蜡', '植物精油', '木芯'],
-          accessories: ['定制标签', '礼盒', '丝带', '香型选择', '修剪器']
-        },
-        {
-          id: 'stationery',
-          name: '手账文具',
-          icon: '📔',
-          desc: '笔记本 · 书签 · 卡片 · 胶带',
+          id: 'card',
+          name: '卡牌',
+          icon: '🃏',
+          desc: '贺卡 · 明信片 · 收藏卡 · 塔罗卡',
           leadTime: '现货 / 定制约 5 天',
-          basePrice: 45,
+          basePrice: 29,
           patterns: [
-            { name: '布面缝线', img: 'works/23e4ec383b1816b4c98a01805032002c.jpg' },
-            { name: '干花压花', img: 'works/842b7d997cb33d133d117e4fcee05f9e.jpg' },
-            { name: '米白棉纸', img: 'works/cf58732337ca917d606f964128ad6c54.jpg' },
-            { name: '复古烫金', img: 'works/e13f04f0b526c0bc4e1df464b4d01ed4.jpg' }
+            { name: '黑白猫', img: 'explore/ur,pin_large_front,square,600x600.jpg' },
+            { name: '小黄龙', img: 'explore/ur,pin_large_front,square,600x600 (2).jpg' }
           ],
-          materials: ['进口布面', '道林纸', '进口棉纸', '牛皮纸'],
-          accessories: ['金属书签', '纸胶带', '姓名烫印', '绑带', '同系列信封']
+          materials: ['特种纸', '白卡纸', '进口棉纸', '金属卡'],
+          accessories: ['烫金工艺', '圆角处理', '信封配套', '独立编号']
         }
       ];
 
@@ -457,8 +421,6 @@
         set('[data-sum="pattern"]', state.pattern || '未选择');
         set('[data-sum="material"]', state.material || '未选择');
         set('[data-sum="accessory"]', state.accessories.length ? state.accessories.join('、') : '未选择');
-        var priceEl = document.querySelector('[data-sum="price"]');
-        if (priceEl && cat) priceEl.textContent = '¥' + cat.basePrice + ' 起';
       }
 
       // 提交定制（AJAX 提交至 FormSubmit，停留原页并提示成功，防重复提交）
@@ -490,13 +452,18 @@
           setField('pattern', state.pattern || '');
           setField('material', state.material || '');
           setField('accessories', state.accessories.length ? state.accessories.join('、') : '');
-          var priceEl = document.querySelector('[data-sum="price"]');
-          setField('price', priceEl ? priceEl.textContent : '');
           // 组装提交数据
           var payload = { _subject: '定制需求提交', _captcha: 'false' };
           customForm.querySelectorAll('[data-custom-field]').forEach(function (el) {
             payload[el.getAttribute('name')] = el.value;
           });
+          // 定制数量
+          var qtyInput = customForm.querySelector('[name="quantity"]');
+          var qty = parseInt(qtyInput ? qtyInput.value : '1', 10);
+          if (isNaN(qty) || qty < 1) qty = 1;
+          if (qty > 99) qty = 99;
+          if (qtyInput) qtyInput.value = qty;
+          payload.quantity = qty;
           fetch('https://formsubmit.co/ajax/493200522@qq.com', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
@@ -524,6 +491,28 @@
               showCustomToast(err.message || '网络异常，提交失败');
             });
         });
+
+        // 定制数量步进器（1-99）
+        var qtyInput = customForm.querySelector('[name="quantity"]');
+        if (qtyInput) {
+          var minus = customForm.querySelector('[data-qty-minus]');
+          var plus = customForm.querySelector('[data-qty-plus]');
+          function clampQty() {
+            var v = parseInt(qtyInput.value, 10);
+            if (isNaN(v) || v < 1) v = 1;
+            if (v > 99) v = 99;
+            qtyInput.value = v;
+          }
+          if (minus) minus.addEventListener('click', function () {
+            qtyInput.value = (parseInt(qtyInput.value, 10) || 1) - 1;
+            clampQty();
+          });
+          if (plus) plus.addEventListener('click', function () {
+            qtyInput.value = (parseInt(qtyInput.value, 10) || 0) + 1;
+            clampQty();
+          });
+          qtyInput.addEventListener('change', clampQty);
+        }
       }
 
       // 轻量 Toast
@@ -555,7 +544,7 @@
       renderPanels();
       updateSummary();
       // 恢复页面标题（main.js 的详情渲染会覆盖 title）
-      document.title = '手作定制 Customizable - 鳞光屿 Linguang Island';
+      document.title = 'custom';
     })();
   </script>
 </body>
