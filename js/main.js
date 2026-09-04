@@ -1083,27 +1083,7 @@
       });
     }
 
-    // 报名按钮
-    const bookBtn = document.querySelector('[data-book-btn]');
-    if (bookBtn) {
-      bookBtn.addEventListener('click', function () {
-        const name = document.querySelector('[data-book-name]');
-        const phone = document.querySelector('[data-book-phone]');
-        if (name && !name.value.trim()) {
-          alert('请填写您的姓名');
-          name.focus();
-          return;
-        }
-        if (phone && !phone.value.trim()) {
-          alert('请填写联系电话');
-          phone.focus();
-          return;
-        }
-        bookBtn.textContent = '报名成功！我们会尽快联系您';
-        bookBtn.style.backgroundColor = 'var(--primary)';
-        bookBtn.disabled = true;
-      });
-    }
+    // 报名表单为原生 <form> 提交（action/method 定义在 event.html），无需额外 JS 处理
   }
 
   initEventPage();

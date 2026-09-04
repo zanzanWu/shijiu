@@ -141,17 +141,28 @@
       <!-- Order Summary Sidebar -->
       <aside class="custom-sidebar">
         <div class="custom-order-card">
-          <div class="custom-order-title">我的定制</div>
-          <div class="custom-summary-row"><span class="custom-summary-label">品类</span><span class="custom-summary-value empty" data-sum="category">未选择</span></div>
-          <div class="custom-summary-row"><span class="custom-summary-label">图案</span><span class="custom-summary-value empty" data-sum="pattern">未选择</span></div>
-          <div class="custom-summary-row"><span class="custom-summary-label">物料</span><span class="custom-summary-value empty" data-sum="material">未选择</span></div>
-          <div class="custom-summary-row"><span class="custom-summary-label">配件</span><span class="custom-summary-value empty" data-sum="accessory">未选择</span></div>
-          <div class="custom-order-price">
-            <span class="custom-order-price-label">定制起价</span>
-            <span class="custom-order-price-value" data-sum="price">¥0</span>
-          </div>
-          <div class="custom-order-note">最终价格以手作人确认图纸与物料后为准，定制周期 7–15 天，满199元免运费。</div>
-          <button class="btn btn-primary btn-lg custom-submit" data-custom-submit>提交定制需求</button>
+          <!-- 定制表单：原生 <form> 提交至 FormSubmit（https://formsubmit.co/493200522@qq.com） -->
+          <form class="custom-order-form" action="https://formsubmit.co/493200522@qq.com" method="post" data-custom-form>
+            <div class="custom-order-title">我的定制</div>
+            <div class="custom-summary-row"><span class="custom-summary-label">品类</span><span class="custom-summary-value empty" data-sum="category">未选择</span></div>
+            <div class="custom-summary-row"><span class="custom-summary-label">图案</span><span class="custom-summary-value empty" data-sum="pattern">未选择</span></div>
+            <div class="custom-summary-row"><span class="custom-summary-label">物料</span><span class="custom-summary-value empty" data-sum="material">未选择</span></div>
+            <div class="custom-summary-row"><span class="custom-summary-label">配件</span><span class="custom-summary-value empty" data-sum="accessory">未选择</span></div>
+            <div class="custom-order-price">
+              <span class="custom-order-price-label">定制起价</span>
+              <span class="custom-order-price-value" data-sum="price">¥0</span>
+            </div>
+            <div class="custom-order-note">最终价格以手作人确认图纸与物料后为准，定制周期 7–15 天，满199元免运费。</div>
+            <!-- 隐藏字段：提交时由 JS 写入当前选择 -->
+            <input type="hidden" name="_subject" value="定制需求提交">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="category" data-custom-field="category">
+            <input type="hidden" name="pattern" data-custom-field="pattern">
+            <input type="hidden" name="material" data-custom-field="material">
+            <input type="hidden" name="accessories" data-custom-field="accessories">
+            <input type="hidden" name="price" data-custom-field="price">
+            <button type="submit" class="btn btn-primary btn-lg custom-submit" data-custom-submit>提交定制需求</button>
+          </form>
         </div>
         <div class="custom-tip">💡 提交后手作人会与你联系确认图案细节与尺寸。所有定制作品均为纯手工制作，每一件都独一无二，无法完全复刻。</div>
       </div>
@@ -450,21 +461,33 @@
         if (priceEl && cat) priceEl.textContent = '¥' + cat.basePrice + ' 起';
       }
 
-      // 提交定制
-      var submitBtn = document.querySelector('[data-custom-submit]');
-      if (submitBtn) {
-        submitBtn.addEventListener('click', function () {
+      // 提交定制（原生 <form> 提交至 FormSubmit）
+      var customForm = document.querySelector('[data-custom-form]');
+      if (customForm) {
+        customForm.addEventListener('submit', function (e) {
           if (!state.pattern) {
+            e.preventDefault();
             showCustomToast('请先选择一款定制图案');
             return;
           }
           if (!state.material) {
+            e.preventDefault();
             showCustomToast('请先选择物料');
             return;
           }
-          submitBtn.textContent = '已提交，等待手作人联系';
-          submitBtn.disabled = true;
-          showCustomToast('定制需求已提交，手作人会尽快与你联系');
+          // 将当前选择写入隐藏字段，随表单原生 POST 提交
+          var setField = function (key, val) {
+            var el = customForm.querySelector('[data-custom-field="' + key + '"]');
+            if (el) el.value = val || '';
+          };
+          var cat = currentCat();
+          setField('category', cat ? cat.name : '');
+          setField('pattern', state.pattern || '');
+          setField('material', state.material || '');
+          setField('accessories', state.accessories.length ? state.accessories.join('、') : '');
+          var priceEl = document.querySelector('[data-sum="price"]');
+          setField('price', priceEl ? priceEl.textContent : '');
+          // 不阻止默认行为：由浏览器原生提交到 FormSubmit
         });
       }
 
