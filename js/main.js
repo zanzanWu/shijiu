@@ -482,11 +482,13 @@
 
   initProductList();
 
-  // ========== Newsletter Form ==========
+  // ========== Newsletter Form（AJAX 提交至 FormSubmit，停留原页提示，防重复提交） ==========
   const newsletterForm = document.querySelector('.newsletter-form');
   if (newsletterForm) {
+    let newsletterSubmitting = false;
     newsletterForm.addEventListener('submit', function (e) {
-      e.preventDefault();
+      e.preventDefault();               // 拦截原生跳转，改为 AJAX 提交
+      if (newsletterSubmitting) return; // 防重复提交
       const input = newsletterForm.querySelector('.newsletter-input');
       const email = input ? input.value.trim() : '';
       if (!email) {
@@ -498,13 +500,40 @@
         showToast('请输入正确的邮箱地址');
         return;
       }
-      // 将订阅信息提交到店主邮箱 493200522@qq.com
-      const subject = '鳞光屿官网 - 订阅申请';
-      const body = '您收到一封来自鳞光屿官网的订阅申请：\n\n订阅邮箱：' + email + '\n\n（本邮件由官网订阅表单自动生成，请及时处理）';
-      const mailtoUrl = 'mailto:493200522@qq.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      window.location.href = mailtoUrl;
-      showToast('已打开邮件发送窗口，请确认发送');
-      input.value = '';
+      const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+      newsletterSubmitting = true;
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '提交中…'; }
+      const payload = {
+        _subject: '鳞光屿官网 - 订阅申请',
+        _captcha: 'false',
+        email: email
+      };
+      fetch('https://formsubmit.co/ajax/493200522@qq.com', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      })
+        .then(function (res) {
+          return res.json().catch(function () { return {}; }).then(function (data) {
+            return { ok: res.ok, data: data };
+          });
+        })
+        .then(function (r) {
+          const data = r.data || {};
+          if (r.ok && (data.success === 'true' || data.success === true)) {
+            showToast('订阅成功！感谢关注鳞光屿');
+            if (input) input.value = '';
+          } else {
+            throw new Error((data.message && String(data.message)) || '订阅失败，请稍后重试');
+          }
+          if (submitBtn) { submitBtn.textContent = '立即订阅'; submitBtn.disabled = false; }
+          newsletterSubmitting = false;
+        })
+        .catch(function (err) {
+          if (submitBtn) { submitBtn.textContent = '立即订阅'; submitBtn.disabled = false; }
+          newsletterSubmitting = false;
+          showToast(err.message || '网络异常，订阅失败');
+        });
     });
   }
 
@@ -1083,7 +1112,79 @@
       });
     }
 
-    // 报名表单为原生 <form> 提交（action/method 定义在 event.html），无需额外 JS 处理
+    // ===== 报名表单：AJAX 提交至 FormSubmit，停留原页并提示成功，防重复提交 =====
+    var formToastTimer = null;
+    function showFormToast(message, isError) {
+      var t = document.querySelector('.form-toast');
+      if (!t) {
+        t = document.createElement('div');
+        t.className = 'form-toast';
+        t.style.cssText = 'position:fixed;bottom:32px;left:50%;transform:translateX(-50%) translateY(120px);background-color:#2D6A5E;color:#fff;padding:14px 28px;border-radius:9999px;font-size:14px;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.2);z-index:9999;transition:transform 0.4s ease, opacity 0.4s ease;max-width:90vw;text-align:center;opacity:0;';
+        document.body.appendChild(t);
+      }
+      t.textContent = message;
+      t.style.backgroundColor = isError ? '#C0392B' : '#2D6A5E';
+      requestAnimationFrame(function () {
+        t.style.transform = 'translateX(-50%) translateY(0)';
+        t.style.opacity = '1';
+      });
+      clearTimeout(formToastTimer);
+      formToastTimer = setTimeout(function () {
+        t.style.transform = 'translateX(-50%) translateY(120px)';
+        t.style.opacity = '0';
+      }, 3200);
+    }
+
+    var bookForm = document.querySelector('[data-book-form]');
+    if (bookForm) {
+      var bookSubmitting = false;
+      bookForm.addEventListener('submit', function (e) {
+        e.preventDefault();           // 拦截原生跳转，改为 AJAX 提交
+        if (bookSubmitting) return;   // 防重复提交
+        var nameEl = bookForm.querySelector('[data-book-name]');
+        var phoneEl = bookForm.querySelector('[data-book-phone]');
+        if (nameEl && !nameEl.value.trim()) { alert('请填写您的姓名'); nameEl.focus(); return; }
+        if (phoneEl && !phoneEl.value.trim()) { alert('请填写联系电话'); phoneEl.focus(); return; }
+        var submitBtn = bookForm.querySelector('[data-book-btn]');
+        bookSubmitting = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = '提交中…';
+        var payload = {
+          _subject: '活动报名：秋日陶艺手作体验课',
+          _captcha: 'false',
+          name: nameEl ? nameEl.value.trim() : '',
+          phone: phoneEl ? phoneEl.value.trim() : '',
+          count: (bookForm.querySelector('[name="count"]') || {}).value || '',
+          note: (bookForm.querySelector('[name="note"]') || {}).value || ''
+        };
+        fetch('https://formsubmit.co/ajax/493200522@qq.com', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(payload)
+        })
+          .then(function (res) {
+            return res.json().catch(function () { return {}; }).then(function (data) {
+              return { ok: res.ok, data: data };
+            });
+          })
+          .then(function (r) {
+            var data = r.data || {};
+            if (r.ok && (data.success === 'true' || data.success === true)) {
+              submitBtn.textContent = '提交成功 ✓';
+              showFormToast('提交成功！我们会尽快与您联系');
+              // 成功后保持按钮禁用，防止重复提交
+            } else {
+              throw new Error((data.message && String(data.message)) || '提交失败，请稍后重试');
+            }
+          })
+          .catch(function (err) {
+            submitBtn.textContent = '重新提交';
+            submitBtn.disabled = false;
+            bookSubmitting = false;
+            showFormToast(err.message || '网络异常，提交失败', true);
+          });
+      });
+    }
   }
 
   initEventPage();

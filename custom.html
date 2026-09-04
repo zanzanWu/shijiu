@@ -175,8 +175,8 @@
       <div class="newsletter">
         <h2 class="newsletter-title">订阅鳞光屿，获取手作灵感</h2>
         <p class="newsletter-desc">订阅我们的邮件，第一时间获取新品上架、限时优惠和手作教程</p>
-        <form class="newsletter-form" onsubmit="return false;">
-          <input type="email" class="newsletter-input" placeholder="输入你的邮箱地址">
+        <form class="newsletter-form" action="https://formsubmit.co/493200522@qq.com" method="post">
+          <input type="email" name="email" class="newsletter-input" placeholder="输入你的邮箱地址" required>
           <button type="submit" class="btn btn-accent btn-lg">立即订阅</button>
         </form>
       </div>
@@ -461,21 +461,26 @@
         if (priceEl && cat) priceEl.textContent = '¥' + cat.basePrice + ' 起';
       }
 
-      // 提交定制（原生 <form> 提交至 FormSubmit）
+      // 提交定制（AJAX 提交至 FormSubmit，停留原页并提示成功，防重复提交）
       var customForm = document.querySelector('[data-custom-form]');
       if (customForm) {
+        var customSubmitting = false;
         customForm.addEventListener('submit', function (e) {
+          e.preventDefault();           // 拦截原生跳转，改为 AJAX 提交
+          if (customSubmitting) return; // 防重复提交
           if (!state.pattern) {
-            e.preventDefault();
             showCustomToast('请先选择一款定制图案');
             return;
           }
           if (!state.material) {
-            e.preventDefault();
             showCustomToast('请先选择物料');
             return;
           }
-          // 将当前选择写入隐藏字段，随表单原生 POST 提交
+          var submitBtn = customForm.querySelector('[data-custom-submit]');
+          customSubmitting = true;
+          submitBtn.disabled = true;
+          submitBtn.textContent = '提交中…';
+          // 将当前选择写入隐藏字段
           var setField = function (key, val) {
             var el = customForm.querySelector('[data-custom-field="' + key + '"]');
             if (el) el.value = val || '';
@@ -487,7 +492,37 @@
           setField('accessories', state.accessories.length ? state.accessories.join('、') : '');
           var priceEl = document.querySelector('[data-sum="price"]');
           setField('price', priceEl ? priceEl.textContent : '');
-          // 不阻止默认行为：由浏览器原生提交到 FormSubmit
+          // 组装提交数据
+          var payload = { _subject: '定制需求提交', _captcha: 'false' };
+          customForm.querySelectorAll('[data-custom-field]').forEach(function (el) {
+            payload[el.getAttribute('name')] = el.value;
+          });
+          fetch('https://formsubmit.co/ajax/493200522@qq.com', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
+          })
+            .then(function (res) {
+              return res.json().catch(function () { return {}; }).then(function (data) {
+                return { ok: res.ok, data: data };
+              });
+            })
+            .then(function (r) {
+              var data = r.data || {};
+              if (r.ok && (data.success === 'true' || data.success === true)) {
+                submitBtn.textContent = '提交成功 ✓';
+                showCustomToast('定制需求已提交，手作人会尽快与你联系');
+                // 成功后保持按钮禁用，防止重复提交
+              } else {
+                throw new Error((data.message && String(data.message)) || '提交失败，请稍后重试');
+              }
+            })
+            .catch(function (err) {
+              submitBtn.textContent = '重新提交';
+              submitBtn.disabled = false;
+              customSubmitting = false;
+              showCustomToast(err.message || '网络异常，提交失败');
+            });
         });
       }
 
