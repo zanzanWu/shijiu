@@ -951,6 +951,11 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--bg-soft);
 }
 
+/* 首页产品图：PC 端显示比例调整为 4:3（手机端保持 1:1，见移动端媒体查询覆盖） */
+body.homepage .product-card-img-wrap {
+  aspect-ratio: 4 / 3;
+}
+
 .product-card-img {
   width: 100%;
   height: 100%;
@@ -3263,7 +3268,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (max-width: 480px) {
   .product-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .hero-visual {
@@ -4406,17 +4411,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media (max-width: 768px) {
-  /* Header right side: keep only the products & event buttons */
+      /* Header right side: 标准汉堡菜单（点击显示导航） */
   .header-actions > .search-bar,
-  .header-actions > .action-btn,
-  .header-actions > .nav-discover-btn {
+  .header-actions > .action-btn:not(.mobile-menu-btn),
+  .header-actions > .nav-discover-btn,
+  .header-actions > .mobile-header-link {
     display: none !important;
   }
-  .header-actions .mobile-header-link {
-    display: inline-flex;
-  }
-  .header-actions .mobile-header-link + .mobile-header-link {
-    margin-left: 10px;
+  .header-actions > .mobile-menu-btn {
+    display: flex !important;
   }
 
   /* Homepage: only the products section remains */
@@ -4425,10 +4428,15 @@ h1, h2, h3, h4, h5, h6 {
     display: none !important;
   }
 
-  /* Homepage products: 2 columns per row on mobile */
+    /* Homepage products: 2 columns per row on mobile */
   body.homepage .product-grid {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 12px;
+  }
+
+  /* 首页产品图：手机端保持 1:1 不变 */
+  body.homepage .product-card-img-wrap {
+    aspect-ratio: 1;
   }
 
   /* Footer: only the contact-info column remains */
@@ -4499,5 +4507,99 @@ h1, h2, h3, h4, h5, h6 {
   .product-tabs .tab-content[data-tab="description"],
   .product-tabs .tab-content[data-tab="video"] {
     display: block !important;
+  }
+}
+
+
+/* news! 新品页：产品列表一行 4 列，图片比例 4:3 */
+#news-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+#news-grid .product-card-img-wrap {
+  aspect-ratio: 4 / 3;
+}
+
+/* ============================================
+   news! 新品页：分类标签 + 数量提示
+   ============================================ */
+.news-filter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 0 auto 36px;
+  max-width: 1280px;
+}
+.news-tag {
+  padding: 9px 22px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-medium);
+  background-color: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.news-tag:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.news-tag.active {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: var(--text-white);
+}
+.news-count {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 14px;
+  color: var(--text-medium);
+}
+.news-count strong {
+  color: var(--primary);
+  font-size: 18px;
+}
+@media (max-width: 768px) {
+  .news-filter {
+    gap: 8px;
+    margin-bottom: 24px;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+  }
+  .news-tag {
+    padding: 7px 16px;
+    font-size: 13px;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .news-count {
+    margin-bottom: 16px;
+  }
+}
+
+
+/* ============================================
+   作品介绍：嵌套 beach_chair 网页（iframe）
+   ============================================ */
+.beach-embed-wrap {
+  width: 100%;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background-color: var(--bg-white);
+}
+.beach-embed {
+  display: block;
+  width: 100%;
+  height: 1500px;
+  border: none;
+}
+@media (max-width: 768px) {
+  .beach-embed {
+    height: 2400px;
   }
 }

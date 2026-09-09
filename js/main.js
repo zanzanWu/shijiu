@@ -235,7 +235,8 @@
     const priceMaxInput = document.querySelector('.price-range .price-input:last-of-type');
 
     const products = SITE_DATA.products;
-    const perPage = 8;
+    // 手机端（<768px）每页 10 个（2 列 × 5 行），桌面每页 9 个（3 列 × 3 行）
+    const perPage = window.innerWidth < 768 ? 10 : 9;
 
     const state = {
       categories: [],
@@ -615,8 +616,11 @@
   });
 
   // ========== Intersection Observer for Fade-in Animations ==========
+  // 注意：.product-card 不参与该动画——初始 opacity:0 依赖 IO 触发，
+  // 一旦某个卡片未被观察触发就会在网格中留下透明空位（用户反馈"中空了一个产品"），
+  // 故产品卡片默认直接可见。
   const animateElements = document.querySelectorAll(
-    '.product-card, .category-card, .testimonial-card, .event-highlight-card, .section-header'
+    '.category-card, .testimonial-card, .event-highlight-card, .section-header'
   );
 
   if ('IntersectionObserver' in window && animateElements.length > 0) {
