@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>products</title>
-  <meta name="description" content="鳞光屿全部手作商品，包括手工饰品、编织、陶艺、皮具、香薰蜡烛、手账文具等，筛选找到属于你的手作好物。">
+  <title>news! · 新品首发</title>
+  <meta name="description" content="鳞光屿最新最热门的手作新品，精选 12 件人气单品，新品首发与热卖手作一次看全。">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="images/logo.svg">
 </head>
@@ -32,7 +32,7 @@
         </a>
         <nav class="main-nav">
           <div class="nav-item">
-            <a href="products.html" class="nav-link active">products<span class="arrow">▼</span></a>
+            <a href="products.html" class="nav-link">products<span class="arrow">▼</span></a>
             <div class="dropdown">
               <div class="dropdown-grid">
                 <a href="products.html?cat=jewelry" class="dropdown-item"><div class="dropdown-item-icon">💍</div><div class="dropdown-item-title">手工饰品</div><div class="dropdown-item-desc">耳环/项链/手链</div></a>
@@ -48,7 +48,7 @@
               </div>
             </div>
           </div>
-          <div class="nav-item"><a href="news.html" class="nav-link">news!</a></div>
+          <div class="nav-item"><a href="news.html" class="nav-link active">news!</a></div>
           <div class="nav-item"><a href="custom.html" class="nav-link">customizable</a></div>
           <div class="nav-item"><a href="event.html" class="nav-link">event</a></div>
         </nav>
@@ -75,8 +75,8 @@
       <button class="mobile-menu-close" aria-label="关闭"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
     </div>
     <nav class="mobile-nav-list">
-      <a href="products.html" class="mobile-nav-link active">products</a>
-      <a href="news.html" class="mobile-nav-link">news!</a>
+      <a href="products.html" class="mobile-nav-link">products</a>
+      <a href="news.html" class="mobile-nav-link active">news!</a>
       <a href="custom.html" class="mobile-nav-link">定制</a>
       <a href="event.html" class="mobile-nav-link">event</a>
     </nav>
@@ -87,110 +87,91 @@
     <div class="breadcrumb">
       <a href="index.html">首页</a>
       <span class="breadcrumb-sep">/</span>
-      <span class="breadcrumb-current">全部商品</span>
+      <span class="breadcrumb-current">news! 新品</span>
     </div>
   </div>
 
   <!-- Page Header -->
   <div class="page-header">
     <div class="container">
-      <h1 class="page-header-title">全部手作商品</h1>
-      <p class="page-header-desc">精选500+件原创手作好物，每一件都由独立手作人精心打造</p>
+      <h1 class="page-header-title">news! 新品首发</h1>
+      <p class="page-header-desc">最新上架与最热门的手作单品，12 件人气好物一次看全</p>
     </div>
   </div>
 
-  <!-- Products Layout -->
-  <div class="container">
-    <div class="products-layout">
-      <!-- Filter Sidebar -->
-      <aside class="filter-sidebar">
-        <div class="filter-section">
-          <div class="filter-title">商品分类 <span class="filter-clear">清除</span></div>
-          <div class="filter-list">
-            <label class="filter-item"><input type="checkbox" data-category="all" checked> 全部商品 <span class="filter-item-count">12</span></label>
-            <label class="filter-item"><input type="checkbox" data-category="jewelry"> 手工饰品 <span class="filter-item-count">2</span></label>
-            <label class="filter-item"><input type="checkbox" data-category="knit"> 编织手作 <span class="filter-item-count">2</span></label>
-            <label class="filter-item"><input type="checkbox" data-category="ceramic"> 陶艺器皿 <span class="filter-item-count">2</span></label>
-            <label class="filter-item"><input type="checkbox" data-category="leather"> 皮具手作 <span class="filter-item-count">1</span></label>
-            <label class="filter-item"><input type="checkbox" data-category="candle"> 香薰蜡烛 <span class="filter-item-count">3</span></label>
-            <label class="filter-item"><input type="checkbox" data-category="stationery"> 手账文具 <span class="filter-item-count">2</span></label>
-          </div>
-        </div>
+  <!-- 新品商品区：分类标签 + 商品列表 -->
+  <section class="section">
+    <div class="container">
+      <!-- 分类标签（列表上方） -->
+      <div class="news-filter" id="news-filter">
+        <button class="news-tag active" data-cat="all">全部</button>
+        <button class="news-tag" data-cat="jewelry">手工饰品</button>
+        <button class="news-tag" data-cat="knit">编织手作</button>
+        <button class="news-tag" data-cat="ceramic">陶艺器皿</button>
+        <button class="news-tag" data-cat="leather">皮具手作</button>
+        <button class="news-tag" data-cat="candle">香薰蜡烛</button>
+        <button class="news-tag" data-cat="stationery">手账文具</button>
+      </div>
 
-
-        <div class="filter-section">
-          <div class="filter-title">颜色</div>
-          <div class="color-swatches">
-            <div class="color-swatch active" style="background:#E8A87C;" title="暖橙色"></div>
-            <div class="color-swatch" style="background:#7AB5A6;" title="薄荷绿"></div>
-            <div class="color-swatch" style="background:#C9A96E;" title="金色"></div>
-            <div class="color-swatch" style="background:#E07A5F;" title="珊瑚红"></div>
-            <div class="color-swatch" style="background:#2D6A5E;" title="深墨绿"></div>
-            <div class="color-swatch" style="background:#A68B6B;" title="棕色"></div>
-            <div class="color-swatch" style="background:#FAF7F2;border:1px solid #ddd;" title="米白色"></div>
-            <div class="color-swatch" style="background:#2C2C2C;" title="黑色"></div>
-          </div>
-        </div>
-
-        <div class="filter-section">
-          <div class="filter-title">材质</div>
-          <div class="filter-list">
-            <label class="filter-item"><input type="checkbox"> 天然羊毛 <span class="filter-item-count">45</span></label>
-            <label class="filter-item"><input type="checkbox"> 陶瓷陶土 <span class="filter-item-count">84</span></label>
-            <label class="filter-item"><input type="checkbox"> 头层牛皮 <span class="filter-item-count">56</span></label>
-            <label class="filter-item"><input type="checkbox"> 925纯银 <span class="filter-item-count">62</span></label>
-            <label class="filter-item"><input type="checkbox"> 大豆蜡 <span class="filter-item-count">48</span></label>
-            <label class="filter-item"><input type="checkbox"> 天然木材 <span class="filter-item-count">38</span></label>
-          </div>
-        </div>
-
-        <div class="filter-section">
-          <div class="filter-title">其他筛选</div>
-          <div class="filter-list">
-            <label class="filter-item"><input type="checkbox"> 新品上架</label>
-            <label class="filter-item"><input type="checkbox"> 限时特惠</label>
-            <label class="filter-item"><input type="checkbox"> 支持定制</label>
-            <label class="filter-item"><input type="checkbox"> 现货速发</label>
-            <label class="filter-item"><input type="checkbox"> 包邮商品</label>
-          </div>
-        </div>
-      </aside>
-
-      <!-- Products Main -->
+      <!-- 商品列表（由 JS 渲染，最新最热 12 件） -->
       <div class="products-main">
-          <!-- Mobile Filter Bar (mobile only) -->
-          <div class="mobile-filter-bar"></div>
-        <!-- Toolbar -->
-        <div class="products-toolbar">
-          <div class="products-count" data-results-info>共找到 <strong>12</strong> 件手作商品</div>
-          <div class="products-sort">
-            <label>排序方式：</label>
-            <select class="sort-select" data-sort>
-              <option value="default">综合推荐</option>
-              <option value="new">新品优先</option>
-              <option value="sales">销量优先</option>
-              <option value="price-asc">价格从低到高</option>
-              <option value="price-desc">价格从高到低</option>
-              <option value="rating">评分最高</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Product Grid（由 JS 渲染） -->
-        <div class="product-grid" data-product-grid>
-          <!-- 由 JS 渲染 -->
-        </div>
-
-        <!-- Pagination（由 JS 渲染） -->
-        <div class="pagination" data-pagination>
-          <!-- 由 JS 渲染 -->
+        <div class="news-count" data-news-count></div>
+        <div class="product-grid" id="news-grid">
+          <!-- 由 js/news.js 渲染 -->
         </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- 制作手记（视频）：产品列表后展示一行 2 个视频 -->
+  <section class="section bg-cream" id="news-videos">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">STUDIO NOTES · 制作手记</div>
+        <h2 class="section-title">镜头里的<span class="highlight">创作现场</span></h2>
+        <p class="section-subtitle">记录一件作品从原料到成形的过程。戴上耳机，听一听泥土、木屑与针线的声音。</p>
+      </div>
+      <div class="video-grid">
+        <!-- Video 1 -->
+        <article class="video-card">
+          <div class="video-frame">
+            <span class="video-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              PLAY
+            </span>
+            <video controls preload="metadata" poster="works/054cdf0217a93ebdaa423b9df954e02b.jpg">
+              <source src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-copy">
+            <h3>从泥到器 · 陶艺全过程</h3>
+            <p class="video-sub">拉坯 · 修坯 · 上釉 · 烧成</p>
+            <p>一捧陶土，如何成为一只马克杯。镜头记录下每一次旋转与塑形。</p>
+          </div>
+        </article>
+        <!-- Video 2 -->
+        <article class="video-card">
+          <div class="video-frame">
+            <span class="video-badge">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+              PLAY
+            </span>
+            <video controls preload="metadata" poster="works/01.jpg">
+              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="video-copy">
+            <h3>一针一线 · 编织制作手记</h3>
+            <p class="video-sub">选纱 · 起针 · 编织 · 收针</p>
+            <p>沿着毛线的走向，慢慢织出温度。每一条围巾都从第一针开始。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- Newsletter -->
-  <section class="section">
+  <section class="section newsletter-band">
     <div class="container">
       <div class="newsletter">
         <h2 class="newsletter-title">订阅鳞光屿，获取手作灵感</h2>
@@ -249,6 +230,6 @@
   <button class="back-to-top" aria-label="返回顶部"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg></button>
   <script src="js/data.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/mobile-products.js"></script>
+  <script src="js/news.js"></script>
 </body>
 </html>
